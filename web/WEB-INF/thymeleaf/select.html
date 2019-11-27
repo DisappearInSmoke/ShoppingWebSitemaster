@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<a href="/toInsert">添加页面</a>
+<form action="/findLike" method="get">
+    <div class="form-group">
+        <label>按产品名称查询</label>
+        <p><input type="text" class="form-control" name="productName" ></p>
+    </div>
+    <button type="submit" class="btn btn-primary">查询</button>
+</form>
+<table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+    <tr align="center">
+        <th scope="col">商品编号</th>
+        <th scope="col">商品名称</th>
+        <th scope="col">商品库存</th>
+        <th scope="col">商品价格</th>
+        <th scope="col">商品状态</th>
+        <th scope="col">商品操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr align="center" th:each="p:${productList}">
+        <td th:text="${p.productId}"></td>
+        <td th:text="${p.productName}"></td>
+        <td th:text="${p.productSum}"></td>
+        <td th:text="${p.productPrice}"></td>
+        <td th:text="${p.statusId.statusName}"></td>
+        <td>
+            <a th:href="@{/selectOne(productId=${p.productId})}" class="btn btn-info btn-sm active" role="button" aria-pressed="true">修改</a>
+            <a th:href="@{/delete(productId=${p.productId})}" class="btn btn-danger btn-sm active" onclose=confirm("确定要删除吗？") role="button" aria-pressed="true">删除</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

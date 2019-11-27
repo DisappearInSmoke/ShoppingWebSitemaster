@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hjp.dao.ConsumerDao">
+    <select id="findAll" resultMap="findAll">
+        select * from consumer
+    </select>
+    <resultMap id="findAll" type="com.hjp.po.Consumer">
+        <id column="consumer_id" property="consumerId"></id>
+        <result column="consumerUser_name" property="consumerUserName"></result>
+        <result column="consumer_password" property="consumerPassword"></result>
+        <collection column="permission" select="com.hjp.dao.PermissionDao.findAll"  property="permission"></collection>
+    </resultMap>
+</mapper>

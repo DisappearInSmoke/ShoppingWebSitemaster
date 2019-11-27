@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hjp.dao.ProductDao">
+    <insert id="insert">
+        insert into product(product_name, product_sum, product_price, status_id)
+        values (#{productName}, #{productSum}, #{productPrice}, #{statusId.statusId})
+    </insert>
+    <delete id="delete">
+        delete from product where product_id=#{productId}
+    </delete>
+    <update id="update">
+        update product set product_sum=#{productSum},product_price=#{productPrice},status_id=#{statusId.statusId}
+        where product_id=#{productId}
+    </update>
+    <select id="findAll" resultMap="findAll">
+        select * from product
+    </select>
+    <select id="findOne" resultMap="findAll">
+        select * from product where product_id=#{productId}
+    </select>
+    <select id="findLike" resultMap="findAll">
+        select * from product where product_name like "%"#{productName}"%"
+    </select>
+    <resultMap id="findAll" type="com.hjp.po.Product">
+        <id column="product_id" property="productId"/>
+        <result column="product_name" property="productName" />
+        <result column="product_sum" property="productSum" />
+        <result column="product_price" property="productPrice" />
+        <association column="status_id" select="com.hjp.dao.StatusDao.findOne" property="statusId"/>
+    </resultMap>
+</mapper>

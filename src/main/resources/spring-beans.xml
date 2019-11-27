@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--创建dataSource -->
+    <bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql:///3166shoppingwebsite"></property>
+        <property name="user" value="root"></property>
+        <property name="password" value="123456"></property>
+    </bean>
+    <!--创建sqlSessionFactory -->
+    <bean id="SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="DataSource" ref="DataSource"></property>
+        <property name="typeAliasesPackage" value="com.hjp.po"></property>
+        <property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"></property>
+    </bean>
+    <!--创建扫描映射接口的方法 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="SqlSessionFactory"></property>
+        <property name="basePackage" value="com.hjp.dao"></property>
+    </bean>
+</beans>
