@@ -16,7 +16,7 @@ public class ConsumerPermission {
     /**
      * 编号
      */
-    private int consumerPermission;
+    private int consumerPermissionId;
     /**
      * 权限id
      */

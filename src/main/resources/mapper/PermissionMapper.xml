@@ -10,7 +10,7 @@
         select * from permission where permission_id = #{permissionId}
     </select>
     <resultMap id="findAll" type="com.hjp.po.Permission">
-        <id property="permissionId" column="permissionId"></id>
-        <result property="permissionName" column="permissionName"></result>
+        <id property="permissionId" column="permission_id"></id>
+        <result property="permissionName" column="permission_name"></result>
     </resultMap>
 </mapper>

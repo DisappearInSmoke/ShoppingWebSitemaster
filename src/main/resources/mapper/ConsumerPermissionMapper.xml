@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hjp.dao.ConsumerPermissionDao">
+    <insert id="insert">
+        insert into consumer_permission values(delect,#{consumerId.consumerId},#{permissionId.permissionId})
+    </insert>
+    <update id="update">
+        update consumer_permission set consumer_id=#{consumerId.consumerId},permission_id=#{permissionId.permissionId} where consumer_permission_id=#{consumerPermissionId}
+    </update>
+    <delete id="delete">
+        delete from consumer_permission where consumer_permission_id=#{consumerPermissionId}
+    </delete>
+    <select id="findAll" resultMap="findAll">
+        select * from consumer_permission
+    </select>
+    <select id="findOne" resultMap="findAll">
+        select * from consumer_permission where consumer_permission_id=#{consumerPermissionId}
+    </select>
+    <resultMap id="findAll" type="com.hjp.po.ConsumerPermission">
+        <id property="consumerPermissionId" column="consumer_permission_id"/>
+        <association property="consumerId" select="com.hjp.dao.ConsumerDao.findOne" column="consumer_id"/>
+        <association property="permissionId" select="com.hjp.dao.ProductDao.findOne" column="permission_id"/>
+    </resultMap>
+</mapper>

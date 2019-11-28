@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<form action="/login" method="get">
+    <div class="form-group">
+        <label>用户名</label>
+        <p><input type="text" class="form-control" name="consumerUserName" ></p>
+    </div>
+    <div class="form-group">
+        <label>密码</label>
+        <p><input type="text" class="form-control" name="consumerPassword" ></p>
+    </div>
+    <button type="submit" class="btn btn-primary">登录</button>
+</form>
+</body>
+</html>

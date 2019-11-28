@@ -1,7 +1,7 @@
 package com.hjp.dao;
 
 import com.hjp.po.Consumer;
-import com.hjp.po.Product;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,12 +15,14 @@ public interface ConsumerDao {
      * @return
      */
     List<Consumer> findAll();
+
     /**
-     * 查询单个
-     * @param consumerId
+     *查询单个
+     * @param consumerUserName
+     * @param consumerPassword
      * @return
      */
-    Consumer findOne(int consumerId);
+    Consumer findOne(@Param("consumerUserName") String consumerUserName,@Param("consumerPassword") String consumerPassword);
 
     /**
      * 添加
