@@ -1,10 +1,8 @@
 package test;
 
-import com.hjp.dao.ConsumerDao;
-import com.hjp.po.Consumer;
-import com.hjp.service.ConsumerService;
+import com.hjp.dao.consumer.ConsumerDao;
+import com.hjp.po.consumer.Consumer;
 import org.junit.runner.RunWith;
-import org.springframework.stereotype.Controller;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.DigestUtils;

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hjp.dao.ConsumerPermissionDao">
+<mapper namespace="com.hjp.dao.consumer.ConsumerPermissionDao">
     <insert id="insert">
         insert into consumer_permission values(delect,#{consumerId.consumerId},#{permissionId.permissionId})
     </insert>
@@ -18,9 +18,9 @@
     <select id="findOne" resultMap="findAll">
         select * from consumer_permission where consumer_permission_id=#{consumerPermissionId}
     </select>
-    <resultMap id="findAll" type="com.hjp.po.ConsumerPermission">
+    <resultMap id="findAll" type="com.hjp.po.consumer.ConsumerPermission">
         <id property="consumerPermissionId" column="consumer_permission_id"/>
-        <association property="consumerId" select="com.hjp.dao.ConsumerDao.findOne" column="consumer_id"/>
-        <association property="permissionId" select="com.hjp.dao.ProductDao.findOne" column="permission_id"/>
+        <association property="consumerId" select="com.hjp.dao.consumer.ConsumerDao.findOne" column="consumer_id"/>
+        <association property="permissionId" select="com.hjp.dao.consumer.PermissionDao.findOne" column="permission_id"/>
     </resultMap>
 </mapper>

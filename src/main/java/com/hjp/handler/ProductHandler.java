@@ -1,11 +1,9 @@
 package com.hjp.handler;
 
 
-import com.hjp.po.Product;
-import com.hjp.service.ConsumerService;
-import com.hjp.service.ProductService;
-import com.hjp.service.StatusService;
-import org.apache.ibatis.annotations.Param;
+import com.hjp.po.product.Product;
+import com.hjp.service.product.ProductService;
+import com.hjp.service.product.StatusService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +20,7 @@ public class ProductHandler {
     private ProductService ps;
     @Resource
     private StatusService ss;
-    @Resource
-    private ConsumerService cs;
+
 
     /**
      * 查询全部
@@ -103,36 +100,5 @@ public class ProductHandler {
     public String delete(int productId){
         ps.delete(productId);
         return "redirect:/selectAll";
-    }
-
-    /**
-     * 查询全部用户
-     * @param model
-     * @return
-     */
-    @RequestMapping("/loginAll")
-    public String login(Model model){
-        model.addAttribute("con",cs.findAll());
-        return "loginAll";
-    }
-    /**
-     * 跳转登录页面
-     * @return
-     */
-    @RequestMapping("/toLogin")
-    public String toLogin(){
-        return "login";
-    }
-
-    @RequestMapping("/login")
-    public String Login(String consumerUserName,String consumerPassword){
-
-        if(null!=cs.findOne(consumerUserName,consumerPassword)){
-            System.out.println("登录成功");
-            return "redirect:/selectAll";
-        }else{
-            System.out.println("登录失败");
-        }
-        return "login";
     }
 }

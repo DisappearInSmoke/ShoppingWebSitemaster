@@ -2,14 +2,14 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hjp.dao.PermissionDao">
+<mapper namespace="com.hjp.dao.consumer.PermissionDao">
     <select id="findAll" resultMap="findAll">
         select * from permission
     </select>
     <select id="findOne" resultMap="findAll">
         select * from permission where permission_id = #{permissionId}
     </select>
-    <resultMap id="findAll" type="com.hjp.po.Permission">
+    <resultMap id="findAll" type="com.hjp.po.consumer.Permission">
         <id property="permissionId" column="permission_id"></id>
         <result property="permissionName" column="permission_name"></result>
     </resultMap>

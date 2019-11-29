@@ -1,0 +1,38 @@
+package com.hjp.service.consumer;
+
+import com.hjp.dao.consumer.ConsumerPermissionDao;
+import com.hjp.po.consumer.ConsumerPermission;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+/**
+ * @author 烟消云散
+ * @create 2019-11-15:03
+ */
+@Service
+public class ConsumerPermissionServiceImpl implements ConsumerPermissionService {
+    @Resource
+    private ConsumerPermissionDao cpd;
+
+    public List<ConsumerPermission> findAll() {
+        return cpd.findAll();
+    }
+
+    public ConsumerPermission findOne(int consumerPermissionId) {
+        return cpd.findOne(consumerPermissionId);
+    }
+
+    public int insert(ConsumerPermission consumerPermission) {
+        return cpd.insert(consumerPermission);
+    }
+
+    public int update(ConsumerPermission consumerPermission) {
+        return cpd.update(consumerPermission);
+    }
+
+    public int delete(int consumerPermissionId) {
+        return cpd.delete(consumerPermissionId);
+    }
+}

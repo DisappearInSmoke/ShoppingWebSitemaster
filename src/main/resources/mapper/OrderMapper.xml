@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hjp.dao.order.OrderDao">
+    <update id="update">
+        update orders set order_num=#{orderNum},order_time=#{orderTime},order_price=#{orderPrice},order_product_sum=#{orderProductSum},product_id=#{productId.productId},address_id=#{addressId.consumerId} where order_id=#{orderId}
+    </update>
+    <delete id="delete">
+        delete from orders where order_id=#{orderId}
+    </delete>
+    <insert id="insert">
+        insert into orders values(default,#{orderNum},default,#{orderPrice},#{orderProductSum},#{productId.productId},#{addressId.consumerId})
+    </insert>
+    <select id="findOne" resultMap="findAll">
+        select * from orders where order_id=#{orderId}
+    </select>
+    <select id="findAll" resultMap="findAll">
+        select * from orders
+    </select>
+    <resultMap id="findAll" type="com.hjp.po.order.Order">
+        <id property="orderId" column="order_id"/>
+        <result property="orderNum" column="order_num"/>
+        <result property="orderPrice" column="order_price"/>
+        <result property="orderProductSum" column="order_product_sum"/>
+        <result property="orderTime" column="order_time"/>
+        <association property="productId" select="com.hjp.dao.product.ProductDao.findOne" column="product_id"/>
+        <association property="addressId" select="com.hjp.dao.order.AddressDao.findOne" column="address_id"/>
+    </resultMap>
+</mapper>
